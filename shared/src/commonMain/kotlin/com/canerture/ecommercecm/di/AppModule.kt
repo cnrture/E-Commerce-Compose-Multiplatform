@@ -4,8 +4,7 @@ import com.canerture.ecommercecm.data.repository.ProductRepositoryImpl
 import com.canerture.ecommercecm.data.source.remote.ProductService
 import com.canerture.ecommercecm.domain.repository.ProductRepository
 import com.canerture.ecommercecm.domain.usecase.GetAllProductsUseCase
-import com.canerture.ecommercecm.domain.usecase.GetSaleProductsUseCase
-import com.canerture.ecommercecm.domain.usecase.SearchProductUseCase
+import com.canerture.ecommercecm.domain.usecase.GetProductDetailUseCase
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
@@ -20,8 +19,7 @@ private val repositoryModule = module {
 
 private val useCaseModule = module {
     factory { GetAllProductsUseCase(get()) }
-    factory { GetSaleProductsUseCase(get()) }
-    factory { SearchProductUseCase(get()) }
+    factory { GetProductDetailUseCase(get()) }
 }
 
 private val sharedModules = listOf(apiModule, repositoryModule, useCaseModule)

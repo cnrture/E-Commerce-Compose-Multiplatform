@@ -6,14 +6,14 @@ import com.canerture.ecommercecm.domain.repository.ProductRepository
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
-class GetSaleProductsUseCase(private val productRepository: ProductRepository) {
+class GetProductDetailUseCase(private val productRepository: ProductRepository) {
 
-    operator fun invoke() = callbackFlow {
+    operator fun invoke(id: Int) = callbackFlow {
 
-        when (val result = productRepository.getSaleProducts()) {
+        when (val result = productRepository.getProductDetail(id)) {
             is Resource.Success -> {
-                val products = result.data.products.orEmpty().map { it.mapToProductUI() }
-                trySend(Resource.Success(products))
+                val product = result.data.product.mapToProductUI()
+                trySend(Resource.Success(product))
             }
 
             is Resource.Error -> trySend(result)

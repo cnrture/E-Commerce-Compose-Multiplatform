@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -17,12 +18,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ECToolbar(
     modifier: Modifier = Modifier,
-    title: String,
+    title: String? = null,
     isBackButtonVisible: Boolean = false,
     onBackClick: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
+            .height(56.dp)
             .fillMaxWidth()
             .padding(16.dp)
     ) {
@@ -40,10 +42,12 @@ fun ECToolbar(
             }
         }
 
-        Text(
-            text = title,
-            modifier = Modifier.align(Alignment.Center),
-            style = MaterialTheme.typography.titleLarge
-        )
+        title?.let {
+            Text(
+                text = it,
+                modifier = Modifier.align(Alignment.Center),
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
     }
 }
